@@ -1,47 +1,60 @@
-function UserChoice (age, movieSelection, matinee, cost, title){
-  this.age = 0;
-  this.title = "";
-  this.movieSelection = movieSelection;
-  this.matinee = matinee;
-  this.cost = [" ticket cost is $5.00", " ticket cost is $7.00", " ticket cost is $8.00", " ticket cost is $10.00"];
+
+
+function BankAccount(name, amount) {
+  this.name = name;
+  this.amount = amount;
+
 }
 
-UserChoice.prototype.userOutput = function(price) {
 
-
-  return this.movieSelection + this.matinee + this.cost[price];
+BankAccount.prototype.deposit = function (deposit){
+  return this.amount = deposit + this.amount;
+  console.log("function: ", this.amount);
 }
 
-function getCost(age, time, movieSelection){
-  var getCost = 0;
-  if (age === 0){
-    getCost = 0;
-  }else if(time === " anytime from noon to 5pm"){
-    getCost = 1;
-  }else if (movieSelection === "To watch Lord of the Flies"){
-    getCost = 2;
-  } else{
-    getCost = 3;
-  }
-  return getCost;
+BankAccount.prototype.withdrawal = function (withdrawal){
+  return this.amount = this.amount - withdrawal ;
 }
+
+
+
+
 
 
 
 $(document).ready(function (){
-  $("#userMovieChoice").submit(function (event){
+var account = new BankAccount("","");
+  $("#form1").click(function (event){
     event.preventDefault();
-    var age = parseInt($("input:radio[name=age]:checked").val());
-    var movieSelection = $("input:radio[name=movieSelection]:checked").val();
-    var time = $("input:radio[name=time]:checked").val();
 
-    var newFinalChoice = new UserChoice(age, movieSelection, time);
-    console.log(newFinalChoice);
+    var userName = $("#userName").val();
+    var userInitialBalance = parseInt($("#userInitialBalance").val());
+
+    account.name = userName;
+    account.amount = userInitialBalance;
+
+    console.log(account.amount);
 //set price here, using values from our array
 
 
-    $("#output").text(newFinalChoice.userOutput(getCost(age, time, movieSelection)));
+    $("#runningBalanceWell").text(account.amount);
+    //call reset function
+    $("#openingBalance").hide();
+    $("#userNameHead").text(account.name);
 
+  });
+
+  $("#form2").click(function (event){
+    event.preventDefault();
+
+    var userDeposit = parseInt($("#userDeposit").val());
+    var userWithdrawal = parseInt($("#userWithdrawal").val());
+
+    // var newBalance = new BankAccount("", );
+    console.log(account.deposit(userDeposit));
+    console.log(account.withdrawal(userWithdrawal));
+
+    $("#runningBalanceWell").text(account.amount);
   });
 
 });
