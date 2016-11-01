@@ -1,0 +1,12 @@
+.runningBalance p{
+  background-color: #FFF;
+  margin: auto;
+  padding: 5px;
+  width: 200px;
+}
+h4 {
+  text-align: center;
+}
+.input-group {
+  margin-top: 10px;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.1.1.js" charset="utf-8"></script>
+    <script src="js/scripts.js" charset="utf-8"></script>
+    <meta charset="utf-8">
+    <title>Bank Account</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" id="openingBalance">
+        <div class="col-md-12 well">
+          <form id="initialBalance">
+            <h2>Open a Bank Account</h2>
+            <div class="form-group">
+              <label for="userName">Enter your name here:</label>
+              <input  class="form-control" type="text" id="userName">
+              <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <span class="input-group-addon">0.00</span>
+                <input type="text" class="form-control" id ="userInitialBalance" aria-label="Amount (to the nearest dollar)">
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+      <form id="runningBalance">
+        <div class="row well" id="register">
+          <div class="col-md-12">
+            <h2><span id="userNameHead"></span> Bank Account</h2>
+            <div class="form-group">
+              <label for="userDeposit">Enter Deposit Amount Here:</label>
+              <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <span class="input-group-addon">0.00</span>
+                <input type="text" class="form-control" id ="userDeposit" aria-label="Amount (to the nearest dollar)">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="userWithdrawal">Enter Withdrawal Amount Here:</label>
+                <div class="input-group">
+                  <span class="input-group-addon">$</span>
+                  <span class="input-group-addon">0.00</span>
+                  <input type="text" class="form-control" id ="userWithdrawal" aria-label="Amount (to the nearest dollar)">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-danger">Submit Transaction</button>
+          </div>
+        </div>
+        <div class="row runningBalance well">
+          <h4>Your Current Balance:</h4>
+          <p>$<span id="runningBalanceWell"></span></p>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
