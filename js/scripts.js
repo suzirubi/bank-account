@@ -6,20 +6,17 @@ function BankAccount (name, amount) {
   this.amount = amount;
 }
 
-
-BankAccount.prototype.deposit = function (deposit) {
-  this.amount = this.amount + deposit;
+BankAccount.prototype.balanceUpdate = function (deposit, withdrawal) {
+  return this.amount += deposit - withdrawal;
 }
 
-BankAccount.prototype.withdrawal = function (withdrawal) {
-  this.amount = this.amount - withdrawal;
-}
+var RunningBalance = [];
 
-function resetFields () {
-  $("input#userDeposit").val("");
-  $("input#userWithdrawal").val("");
-  $("input#runningBalanceWell").val("");
-}
+// function resetFields () {
+//   $("input#userDeposit").val("");
+//   $("input#userWithdrawal").val("");
+//   $("input#runningBalanceWell").val("");
+// }
 
 // user interface
 
@@ -28,12 +25,12 @@ $(document).ready(function() {
   $("form#initialBalance").submit(function(event) {
     event.preventDefault();
 
-    var userName = $("#userName").val();
-    var userInitialAmount = parseInt($("#userInitialAmount").val());
+    var userName = $("input#userName").val();
+    var userInitialAmount = parseInt($("input#userInitialAmount").val());
     var userBalance = new BankAccount(userName, userInitialAmount);
+    RunningBalance.push(userBalance);
 
-
-    $("#runningBalanceWell").text(userBalance.amount);
+    $("#runningBalanceWell").text(RunningBalance[0].amount);
 
     $("#openingBalance").hide();
     $("#userNameHead").text(userBalance.name);
@@ -43,14 +40,13 @@ $(document).ready(function() {
   $("form#runningBalance").submit(function(event) {
     event.preventDefault();
 
-    var userDeposit = parseInt($("#userDeposit").val());
-    var userWithdrawal = parseInt($("#userWithdrawal").val());
-    var accountBalance = new BankAccount("","");
-    accountBalance.deposit(userDeposit);
-    accountBalance.withdrawal(userWithdrawal);
+    var userDeposit = parseInt($("input#userDeposit").val());
+    var userWithdrawal = parseInt($("input#userWithdrawal").val());
+    var userTransaction = RunningBalance[0].balanceUpdate(userDeposit, userWithdrawal);
 
-    $("#runningBalanceWell").text(accountBalance);
-    resetFields();
+
+    $("#runningBalanceWell").text(userTransaction);
+    // resetFields();
   });
 
 });
