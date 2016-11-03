@@ -11,6 +11,7 @@ BankAccount.prototype.balanceUpdate = function (deposit, withdrawal) {
 }
 
 var RunningBalance = [];
+console.log(RunningBalance);
 
 // function resetFields () {
 //   $("input#userDeposit").val("");
